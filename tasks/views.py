@@ -53,3 +53,25 @@ class TaskCompleteUpdateView(View):
         task.is_done = not task.is_done
         task.save()
         return redirect("tasks:task-list")
+
+
+class TagListView(generic.ListView):
+    model = Tag
+    queryset = Tag.objects.all()
+
+
+class TagCreateView(generic.CreateView):
+    model = Tag
+    fields = "__all__"
+    success_url = reverse_lazy("tasks:tag-list")
+
+
+class TagUpdateView(generic.UpdateView):
+    model = Tag
+    fields = "__all__"
+    success_url = reverse_lazy("tasks:tag-list")
+
+
+class TagDeleteView(generic.DeleteView):
+    model = Tag
+    success_url = reverse_lazy("tasks:tag-list")
